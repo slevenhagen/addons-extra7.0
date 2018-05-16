@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!--
+	HU Type
+	-->
+        <record id="hu1" model="hu.type">
+            <field name="name">Unit</field>
+        </record>
+        <record id="hu2" model="hu.type">
+            <field name="name">Pack</field>
+        </record>
+        <record id="hu3" model="hu.type">
+            <field name="name">Box</field>
+        </record>
+        <record id="hu4" model="hu.type">
+            <field name="name">Pallet</field>
+        </record>
+    </data>
+</openerp>

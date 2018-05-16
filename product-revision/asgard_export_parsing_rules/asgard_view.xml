@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_asgard_ledger_export_fields_tree" model="ir.ui.view">
+            <field name="name">asgard.extra.view.tree</field>
+            <field name="model">asgard.ledger.export.fields</field>
+            <field name="arch" type="xml">
+                <tree string="Parsing rules list">
+	                <field name="sequence"/>
+	                <field name="name"/>
+	                <field name="build_cmd"/>
+	                <field name="type_field"/>
+	                <field name="asgard_ledger_id"/>
+                </tree>
+            </field>
+        </record>
+	
+	   <record model="ir.actions.act_window" id="action_view_asgard_ledger_export_fields_tree">
+	        <field name="name">Parsing rules list</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">asgard.ledger.export.fields</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="view_id" ref="asgard_export_parsing_rules.view_asgard_ledger_export_fields_tree"/>
+	    </record> 
+		<menuitem name ="Parsing rules" id="menu_asgard_ledger_export_fields"
+			action="asgard_export_parsing_rules.action_view_asgard_ledger_export_fields_tree" parent="asgard_ledger_export.menu_asgard_ledger_export_config"/>
+	</data>
+</openerp>
+
+        
+                            

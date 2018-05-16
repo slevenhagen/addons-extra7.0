@@ -1,0 +1,67 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* procurement_special_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-12 09:14+0000\n"
+"PO-Revision-Date: 2014-06-12 11:16+0100\n"
+"Last-Translator: Mathieu Vatel <mathieu@julius.fr>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: procurement_special_quantity
+#: view:procurement.order:0
+msgid "Check Quantity"
+msgstr "Vérifier la quantité"
+
+#. module: procurement_special_quantity
+#: model:ir.model,name:procurement_special_quantity.model_procurement_order_compute_all
+msgid "Compute all schedulers"
+msgstr "Lancer tous les planificateurs"
+
+#. module: procurement_special_quantity
+#: field:procurement.order,parent_procurement_id:0
+msgid "Parent procurement"
+msgstr "Approvisionnement parent"
+
+#. module: procurement_special_quantity
+#: code:addons/procurement_special_quantity/procurement.py:354
+#, python-format
+msgid "PROC %d: from stock - %3.2f %-5s - %s"
+msgstr "APPRO %d: depuis le stock - %3.2f %-5s - %s"
+
+#. module: procurement_special_quantity
+#: field:procurement.order,linked_procurement_ids:0
+msgid "parent_procurement_id"
+msgstr "parent_procurement_id"
+
+#. module: procurement_special_quantity
+#: model:ir.model,name:procurement_special_quantity.model_procurement_order
+msgid "Procurement"
+msgstr "Approvisionnement"
+
+#. module: procurement_special_quantity
+#: field:procurement.order.compute.all,date:0
+msgid "Date running"
+msgstr "Date"
+
+#. module: procurement_special_quantity
+#: code:addons/procurement_special_quantity/procurement.py:267
+#: code:addons/procurement_special_quantity/procurement.py:289
+#: code:addons/procurement_special_quantity/procurement.py:308
+#: code:addons/procurement_special_quantity/procurement.py:330
+#, python-format
+msgid "PROC %d: on order - %3.2f %-5s - %s"
+msgstr "APPRO %d: à la demande - %3.2f %-5s - %s"
+
+#. module: procurement_special_quantity
+#: help:procurement.order.compute.all,date:0
+msgid "If you choose a date here it will recompute the procurement date taking in account this date"
+msgstr "Si vous choisissez une date ici cela va recalculer les date d'approvisionnement sur la base de cette date"
+

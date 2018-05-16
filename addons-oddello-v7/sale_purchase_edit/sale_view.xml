@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+	    <record id="view_order_form_inherit_sale_purchase_edit" model="ir.ui.view">
+				<field name="name">sale.order.form.inherit.sale.purchase.edit</field>
+				<field name="model">sale.order</field>
+				<field name="type">form</field>
+				<field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+						<attribute name="domain">[('parent_id', '=', partner_id)]</attribute>
+					</xpath>
+					<xpath expr="//button[@name='copy_quotation']" position="after">
+						<button name="action_cancel_draft" states="cancel" string="Reset to Draft" type="object" icon="gtk-convert"/>
+					</xpath>
+				</field>
+		</record>
+		
+      </data>
+</openerp>

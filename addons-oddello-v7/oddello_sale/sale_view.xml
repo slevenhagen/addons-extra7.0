@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+<!--     	<record id="sale.trans_ship_ship_except" model="workflow.transition"> -->
+<!--             <field name="act_from" ref="sale.act_ship"/> -->
+<!--             <field name="act_to" ref="sale.act_ship_end"/> -->
+<!--             <field name="condition">test_state('canceled')</field> -->
+<!--         </record> -->
+    	
+    	<!--        Sale Order Tree view       	-->
+		
+    	 <record id="view_order_tree_inherit" model="ir.ui.view">
+				<field name="name">sale.order.tree.inherit</field>
+				<field name="model">sale.order</field>
+				<field name="type">tree</field>
+				<field name="inherit_id" ref="sale.view_order_tree" />
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='date_order']" position="after">
+						<field name="promise_date" required="1"/>
+						<field name="commitment_date" string="Ship To Date"/>
+					</xpath>
+				</field>
+		</record>
+    
+    	<!--        Sale Order Form view       	-->
+    
+	    <record id="view_order_form_inherit" model="ir.ui.view">
+				<field name="name">sale.order.form.inherit</field>
+				<field name="model">sale.order</field>
+				<field name="type">form</field>
+				<field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+				<field name="arch" type="xml">
+		    			<field name="shipped" position="replace"  />
+					<xpath expr="//field[@name='shop_id']" position="after">
+						<field name="promise_date" required="1"/>
+						<field name="active" invisible="1"/>
+					</xpath>
+					<xpath expr="//field[@name='promise_date']" position="after">
+						<field name="shipped" />
+					</xpath>
+					<xpath expr="//field[@name='partner_shipping_id']" position="after">
+						<field name="third_party_bill_to_id"/>
+					</xpath>
+					<xpath expr="//field[@name='picking_ids']" position="attributes">
+					    <attribute name="context">{'form_view_ref': 'stock.view_picking_out_form'}</attribute>
+					</xpath>
+					<xpath expr="//field[@name='project_id']" position="attributes">
+					    <attribute name="invisible">True</attribute>
+					</xpath>
+					<xpath expr="//field[@name='product_packaging']" position="after">
+						<field name="analytic_account_id"/>
+					</xpath>
+					<xpath expr="//field[@name='partner_id']" position="attributes">
+						<attribute name='on_change'>onchange_partner_id(partner_id)</attribute>
+					</xpath>
+				</field>
+		</record>
+		
+		<!--        Sale Order Search view       -->
+		
+		<record id="view_order_search_inherit" model="ir.ui.view">
+				<field name="name">sale.order.search.inherit</field>
+				<field name="model">sale.order</field>
+				<field name="type">search</field>
+				<field name="inherit_id" ref="sale.view_sales_order_filter" />
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='name']" position="after">
+						<field name="promise_date"/>
+						<field name="commitment_date" string="Ship To Date"/>
+					</xpath>
+					<xpath expr="//filter[@string='Order Date']" position="after">
+						<separator orientation="vertical"/>
+						<filter string="Promise Date" icon="terp-go-month" domain="[]" context="{'group_by':'promise_date'}"/>
+						<separator orientation="vertical"/>
+						<filter string="Ship To Date" icon="terp-go-month" domain="[]" context="{'group_by':'commitment_date'}"/>
+					</xpath>
+					<xpath expr="//filter[@string='Sales']" position="after">
+						<filter icon="terp-document-new" string="Historical" domain="[('state','=','historical')]" help="Sales Order that haven't yet been confirmed"/>
+					</xpath>
+				</field>
+		</record>
+		
+      </data>
+</openerp>

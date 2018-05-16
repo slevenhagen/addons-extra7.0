@@ -1,0 +1,70 @@
+===============================================================================
+ Version Change Log (oddello_purchasing)
+===============================================================================
+3.3 --> 11 Aug 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Added code for displaying company invoice address for bill to.
+
+3.2 --> 9 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Fixed errors(standardized the code from v6 to v7) in name_get, ammount_all,_compute and onchange_partner_id.
+
+3.1 --> 4 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Improved the view and code as per v7.
+
+3.0 --> 1 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Made the view and the code compatible to v7.
+
+2.6 --> 12 June 2014 Jay
+        * Updated credit/debit fields of move line as per KPCE price accuracy.
+
+2.5 --> 25 April 2014 Jay
+        * Bypass the check of POD for the users belonging to the specific group
+
+2.4 --> 10 April 2014 Jay
+        * Made the amount totals rounding to 2.
+        
+2.3 --> 01 April 2014: Bipin
+        * Added a new Historical Filter.
+
+2.2 --> 04 Mar 2014 : Dhwani
+        * POD scan and button will be aditable in DO.
+
+2.1 --> 04 Mar 2014 : Dhwani
+        * POD scan and button will be editable in DO.
+         
+2.0 --> 19 Feb 2014 : SerpentCS
+        * Expand product search with supplier product code.
+
+1.9 --> 31 Jan 2014 : SerpentCS
+        * Added a conditional check on incoming shipment to check POD file existence on process of shipment.
+
+1.8 --> 30 Jan 2014 : SerpentCS
+        * Added a domain on Purchase order lines to show only the items of the chosen supplier.
+
+1.7 --> 09 Dec 2013 : Bipin Rathod
+        * Corrected report layout to accommodate 10 decimals
+
+1.6 --> 04 Dec 2013 : Bipin Rathod
+        * POD Scan changed as POD Attach.
+
+1.5 --> 30 oct 2013 : Bipin Rathod
+        * invoice line and PO order line unit price and subtotal with 4 decimal
+        
+1.4 --> 28 oct 2013 :
+        * POD scan num and button shifted in 'additional info' page.
+
+1.3 --> 08 June 2013 : Bipin Rathod
+        * Changed Part Number/ Description label to PN / Description.
+        * Changed Delivery Date/Time label to Needed Date
+        * Removed Supplier No label and its data form Report.
+        * Moved Specification of Product in one line.
+        * Removed Promise and Needed label.
+        * Changed the label of Amount (Price label) its just Amount now.
+        
+1.2  --> 23 May 2013 : Nishant 
+        * Fixed error and changed code as per requirement.
+
+1.1  --> 22 May 2013 : Nishant 
+        * Appled the functionality to attached file in incoming shipment.
+    
+1.0  --> 25 March 2013: Bipin Rathod
+        * Added purchase_order report.

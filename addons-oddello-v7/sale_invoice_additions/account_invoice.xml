@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Account Invoice -->
+        <record id="invoice_form_inherit1" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit1</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                      <field name="shipping_address_id" domain="[('id','=',partner_id)]" attrs="{'required':[('type','=','out_invoice')]}"/>
+                </xpath>
+
+			 	<xpath expr="//field[@string='Customer']" position="attributes">
+					<attribute name='on_change'>onchange_partner_id(type,partner_id,date_invoice,payment_term, partner_bank_id,company_id)</attribute>
+				</xpath>
+				<xpath expr="//field[@name='account_id']" position="after">
+					<field name='cust_po_num'/>
+				</xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

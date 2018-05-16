@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Activity -->
+     <record model="workflow.activity" id="mrp_operations.prod_act_wc_draft">
+        <field name="wkf_id" ref="mrp_operations.wkf_prod_workcenter"/>
+        <field name="name">draft</field>
+        <field name="flow_start" eval="False"/>
+        <field name="kind">function</field>
+        <field name="action">action_draft()</field>
+    </record>
+    
+    <record model="workflow.activity" id="npg_mrp_act_wc_new">
+        <field name="wkf_id" ref="mrp_operations.wkf_prod_workcenter"/>
+        <field name="flow_start">True</field>
+        <field name="name">new</field>
+        <field name="kind">function</field>
+        <field name="action">action_new()</field>
+    </record>
+    
+    <record model="workflow.activity" id="npg_mrp_act_wc_waiting_work">
+        <field name="wkf_id" ref="mrp_operations.wkf_prod_workcenter"/>
+        <field name="name">wait_work</field>
+        <field name="kind">function</field>
+        <field name="action">action_waiting_work()</field>
+    </record>
+    
+    <record model="workflow.activity" id="npg_mrp_act_wc_waiting_product">
+        <field name="wkf_id" ref="mrp_operations.wkf_prod_workcenter"/>
+        <field name="name">wait_product</field>
+        <field name="kind">function</field>
+        <field name="action">action_wait_product()</field>
+    </record>
+
+    
+    <!-- Transition -->
+    
+    	 <record id="trans_npg_new_to_wait_work" model="workflow.transition">
+            <field name="act_from" ref="npg_mrp_act_wc_new"/>
+            <field name="act_to" ref="npg_mrp_act_wc_waiting_work"/>
+            <field name="signal">button_check</field>
+            <field name="condition">True</field>
+        </record>
+        
+    	 <record id="trans_wait_work_to_wait_prod" model="workflow.transition">
+            <field name="act_from" ref="npg_mrp_act_wc_waiting_work"/>
+            <field name="act_to" ref="npg_mrp_act_wc_waiting_product"/>
+            <field name="trigger_model">mrp.production.workcenter.line</field>
+            <field name="trigger_expr_id">wo_get()</field>
+            <field name="condition">test_wait_work()</field>
+        </record>
+        
+        <record id="trans_wait_prod_to_wait_draft" model="workflow.transition">
+            <field name="act_from" ref="npg_mrp_act_wc_waiting_product"/>
+            <field name="act_to" ref="mrp_operations.prod_act_wc_draft"/>
+            <field name="trigger_model">stock.move</field>
+            <field name="trigger_expr_id">move_get()</field>
+            <field name="condition">test_rawmaterial()</field>
+        </record>
+    </data>
+</openerp>
+        	

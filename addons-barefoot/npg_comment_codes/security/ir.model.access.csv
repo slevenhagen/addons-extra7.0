@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_npg_comment_codes,npg_comment_codes.salesman,model_npg_comment_codes,base.group_sale_salesman,1,1,1,0
+access_npg_comment_codes_manager,npg_comment_codes.manager,model_npg_comment_codes,base.group_sale_manager,1,1,1,1

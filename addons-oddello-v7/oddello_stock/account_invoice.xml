@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<act_window context="{'default_invoice_id': active_id,'form_view_ref':'oddello_purchasing.view_order_form_inherit','tree_view_ref':'purchase.purchase_order_tree','search_view_ref':'purchase.view_purchase_order_filter'}"
+    	domain="[('invoice_ids', 'in', [active_id])]"
+        id="supplier_invoice_pur_order_link"
+        name="Purchase Order"
+        res_model="purchase.order"
+        src_model="account.invoice"/>
+        
+        <act_window context="{'default_invoice_id': active_id,'form_view_ref':'stock.view_picking_in_form','tree_view_ref':'stock.view_picking_in_tree','search_view_ref':'stock.view_picking_in_search'}"
+    	domain="[('invoice_id', 'in', [active_id])]"
+        id="supplier_invoice_stock_picking_link"
+        name="Incoming Shipment"
+        res_model="stock.picking.in"
+        src_model="account.invoice"/>
+        
+        <act_window 
+        context="{'form_view_ref':'base.view_attachment_form','tree_view_ref':'base.view_attachment_tree','search_view_ref': 'base.view_attachment_search'}"
+        id="supplier_invoice_attachment_link"
+        name="BOL"
+        res_model="ir.attachment"
+        src_model="account.invoice"/>
+    </data>
+</openerp>

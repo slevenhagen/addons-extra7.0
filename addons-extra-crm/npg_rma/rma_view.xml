@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_crm_rma_meessage_form" model="ir.ui.view">
+			<field name="name">crm.rma.message.form</field>
+			<field name="model">crm.rma.message</field>
+			<field name="arch" type="xml">
+				<form string="Message" version="7.0">
+					<group>
+						<separator string="Message" colspan="4" />
+						<field name="name" nolabel="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_crm_rma_meessage_tree" model="ir.ui.view">
+			<field name="name">crm.rma.message.tree</field>
+			<field name="model">crm.rma.message</field>
+			<field name="arch" type="xml">
+				<tree string="Message">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- RMA Form -->
+
+		<record id="view_crm_rma_form" model="ir.ui.view">
+			<field name="name">crm.rma.form</field>
+			<field name="model">crm.rma</field>
+			<field name="arch" type="xml">
+				<form string="RMA Form" version="7.0">
+					<header>
+						<button name="rma_cancel" states="open,in_progress,pending"
+							string="_Cancel" icon="gtk-cancel" type="object" />
+						<button name="action_approve" string="Open" states="draft"
+							icon="gtk-go-forward" type="object" />
+						<button name="rma_process" string="Process" states="open"
+							icon="gtk-go-forward" type="object" />
+						<!--button name="rma_done" string="Done" states="in_progress" type="object" 
+							icon="gtk-ok"/ -->
+						<button name="rma_draft" states="cancel" string="Reset to Draft"
+							type="object" icon="gtk-jump-to" />
+						<field name="state" widget="statusbar" readonly="1" />
+					</header>
+					<sheet>
+						<h1>
+							RMA
+							<field name="name" class="oe_inline" />
+						</h1>
+						<group colspan="4" col="4">
+							<field name="partner_id" on_change="onchange_partner_id(partner_id)" />
+							<field name="company_id" widget="selection" />
+							<field name="partner_address_id" />
+							<field name="user_id" />
+							<field name="partner_shipping_id" />
+							<!--field name="product_id"/ -->
+						</group>
+						<notebook colspan="4">
+							<page string="General">
+								<group>
+									<field name="priority" />
+									<field name="ref" />
+									<field name="claim_id" />
+									<newline />
+									<field name="rma_lines" nolabel="1" colspan="4" />
+								</group>
+							</page>
+							<page string="Moves" attrs="{'invisible':[('state','=','draft')]}">
+								<separator string="Pickings" colspan="4" />
+								<field name="incoming_shipping_ids" nolabel="1" colspan="4" />
+								<separator string="Delivery Orders" colspan="4" />
+								<field name="outgoing_shipping_ids" nolabel="1" colspan="4" />
+								<field name="delivery_move_ids" nolabel="1" colspan="4"
+									widget="one2many_list">
+									<tree string="Outgoing Moves">
+										<field name="picking_id" />
+										<field name="origin" />
+										<field name="partner_id" />
+										<field name="product_id" />
+										<field name="product_qty" />
+										<field name="product_uom" />
+										<field name="date" />
+										<field name="state" />
+									</tree>
+								</field>
+							</page>
+							<page string="History">
+								<field name="message_ids" readonly="1" nolabel="1" />
+							</page>
+							<page string="Notes">
+								<group colspan="2" col="2">
+									<separator string="Notes" colspan="2" />
+									<field name="note" nolabel="1" />
+									<separator string="Issues Found" colspan="2" />
+									<field name="cause" nolabel="1" />
+								</group>
+
+								<group colspan="2" col="2">
+									<separator string="Customer's Comments" colspan="2" />
+									<field name="cust_comments" nolabel="1" />
+									<separator string="Watchers Emails" colspan="2" />
+									<field name="email_cc" nolabel="1" />
+								</group>
+
+							</page>
+							<page string="Additional Information">
+								<group colspan="2" col="2">
+									<field name="partner_phone" />
+									<field name="email_from" widget="email" />
+								</group>
+								<group colspan="2" col="2">
+									<field name="date_create" />
+									<field name="date_received" />
+									<!--field name="date_processed"/ -->
+									<field name="date_hold" />
+									<field name="date_analyze" />
+									<field name="write_date" />
+									<field name="write_uid" />
+								</group>
+
+							</page>
+						</notebook>
+					</sheet>
+					<!-- group colspan="2" col="2" > <field name="state" /> </group -->
+					<!--group colspan="2" col="2" > <button name="rma_cancel" string="Cancel" 
+						states="draft" icon="terp-gtk-stop" confirm="Are you sure to cancel this 
+						record ?" /> <button name="rma_approve" string="Approve" states="draft" icon="gtk-go-forward" 
+						/> </group -->
+					<!-- <group col="6" colspan="4"> <field name="state" readonly="1"/> 
+						<button name="rma_cancel" states="open,in_progress,pending" string="_Cancel" 
+						icon="gtk-cancel" type="object"/> <button name="action_approve" string="Open" 
+						states="draft" icon="gtk-go-forward" type="object"/> <button name="rma_process" 
+						string="Process" states="open" icon="gtk-go-forward" type="object"/> button 
+						name="rma_done" string="Done" states="in_progress" type="object" icon="gtk-ok"/ 
+						<button name="rma_draft" states="cancel" string="Reset to Draft" type="object" 
+						icon="gtk-jump-to"/> </group> -->
+				</form>
+			</field>
+		</record>
+
+		<!-- RMA Tree -->
+
+		<record id="view_crm_rma_tree" model="ir.ui.view">
+			<field name="name">crm.rma.tree</field>
+			<field name="model">crm.rma</field>
+			<field name="arch" type="xml">
+				<tree string="RMA Tree">
+					<field name="name" />
+					<field name="date_create" />
+					<field name="partner_id" />
+					<field name="partner_phone" />
+					<field name="email_from" />
+					<field name="user_id" />
+					<field name="priority" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- RMA Filters -->
+
+		<record id="view_crm_rma_filter" model="ir.ui.view">
+            <field name="name">crm.rma.search</field>
+            <field name="model">crm.rma</field>
+            <field name="arch" type="xml">
+                <search string="Search RMA">
+                    <filter string="RMA" domain="[('user_id','=',uid)]" icon="terp-personal" name="my_crm_rma_orders_filter"/>
+                    <filter string="Name"  help="My Sales Orders" icon="terp-personal" name="name"/>
+                    <field name="name" />
+                    <field name="partner_id" />
+					<field name="date_create" />
+					<field name="partner_phone" />
+                    <field name="user_id"/>
+                    <filter domain="[('user_id','=',False)]" icon="terp-personal-" 	separator="1" />
+                    <field name="priority"/>
+                    <field name="state" />
+                    <group expand="0" string="Group By...">
+                        <filter string="Partner" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Last Updated By" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Creation Date" icon="terp-go-month" domain="[]" context="{'group_by':'date_create'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		
+
+		<!-- Action -->
+
+		<record id="action_crm_rma" model="ir.actions.act_window">
+			<field name="name">RMA</field>
+			<field name="res_model">crm.rma</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="view_crm_rma_tree" />
+			<field name="search_view_id" ref="view_crm_rma_filter" />
+		</record>
+
+		<!-- Menu -->
+
+		<menuitem id="menu_crm_rma" name="RMA" action="action_crm_rma"
+			parent="base.menu_aftersale" />
+
+		<!-- RMA Line Form -->
+
+		<record id="view_crm_rma_line_form" model="ir.ui.view">
+			<field name="name">crm.rma.line.form</field>
+			<field name="model">crm.rma.line</field>
+			<field name="arch" type="xml">
+				<form string="RMA Lines" version="7.0">
+					<group colspan="2" col="4">
+		                <field name="product_lot_id" on_change="onchange_lot(product_lot_id)" />
+		                <field name="name" />
+		                <field name="requested_procedure" />
+		                <field name="product_id" on_change="onchange_product(product_id)" />
+                    </group>
+					<group colspan="2" col="4">
+						<field name="product_uom" />
+						<field name="product_qty" />
+						<field name="guarantee_limit" />
+						<field name="incoming_move_id" />
+						<field name="line_incoming_shipment_id" />
+						<field name="line_out_shipment_id" />
+					</group>
+					<group>	
+						<!-- <button name="rma_line_make_repair" attrs="{'readonly': [('in_state','!=','done') 
+							] }" string="Create Repair Order" icon="gtk-new" type="object"/> -->
+						<field name="repair_id" />
+						<field name="in_state" invisible="1" />
+						<field name="delivery_move_ids" invisible="1" nolabel="1" colspan="4" widget="one2many_list" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+
+		<!-- RMA Line Tree -->
+
+		<record id="view_crm_rma_line_tree" model="ir.ui.view">
+			<field name="name">crm.rma.line.tree</field>
+			<field name="model">crm.rma.line</field>
+			<field name="arch" type="xml">
+				<tree string="RMA Lines" >
+					<field name="product_lot_id" on_change="onchange_lot(product_lot_id)" />
+					<field name="name" colspan="4" width="200" />
+					<field name="requested_procedure" />
+					<field name="product_id" on_change="onchange_product(product_id)" />
+					<field name="product_uom" />
+					<field name="product_qty" />
+					<field name="guarantee_limit" />
+					<field name="line_incoming_shipment_id" />
+					<!--<button name="rma_line_make_repair" attrs="{'readonly': [('in_state','!=','done') 
+						] }" string="Create Repair Order" icon="gtk-new" type="object"/> -->
+					<field name="repair_id" />
+					<field name="in_state" invisible="1" />
+					<field name="repaired" invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+		<!--<record id="view_picking_out_form_inheit9" model="ir.ui.view"> <field 
+			name="name">stock.picking.inherit</field> <field name="model">stock.picking</field> 
+			<field name="type">form</field> <field name="inherit_id" ref="stock.view_picking_out_form" 
+			/> <field name="arch" type="xml"> <xpath expr="/form/notebook/page/field[@name='move_lines']/tree[@string='Stock 
+			Moves']" position="attributes"> <attribute name="string">Incoming Moves</attribute> 
+			</xpath> </field> </record> -->
+
+	</data>
+</openerp>

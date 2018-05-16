@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Account Invoice -->
+        <record id="invoice_search_inherit_oddello" model="ir.ui.view">
+            <field name="name">account.invoice.search.inherit.oddello</field>
+            <field name="model">account.invoice</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                      <field name="supplier_invoice_number"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='reference']" position="attributes">
+					<attribute name='on_change'>onchange_reference(reference,partner_id)</attribute>
+				</xpath>
+				
+			</field>
+		</record>
+       <record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Print Invoice']" position="attributes">
+                      <attribute name="name">%(report_account_invoice)d</attribute>
+                      <attribute name="type">action</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="oddello_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state in ('draft');black:state in ('proforma','proforma2','open');gray:state in ('cancel')" string="Invoice">
+                    <field name="date_invoice"/>
+                    <field name="number"/>
+                    <field name="partner_id" groups="base.group_user"/>
+                    <field name="supplier_invoice_number"/>
+                    <field name="name"/>
+                    <field name="journal_id" invisible="1"/>
+                    <field name="period_id" invisible="1" groups="account.group_account_user"/>
+                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    <field name="user_id"/>
+                    <field name="date_due"/>
+                    <field name="origin"/>
+                    <field name="currency_id"/>
+                    <field name="residual" sum="Residual Amount"/>
+                    <field name="amount_untaxed" sum="Untaxed Amount"/>
+                    <field name="amount_total" sum="Total Amount"/>
+                    <field name="state"/>
+                    <button name="invoice_open" states="draft,proforma2" string="Approve" icon="terp-camera_test"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="account.action_invoice_tree1" model="ir.actions.act_window">
+            <field name="context">{'type':'out_invoice', 'journal_type': 'sale', 'search_default_unpaid':1}</field>
+        </record>
+        <record id="account.action_invoice_tree2" model="ir.actions.act_window">
+            <field name="context">{'type':'in_invoice', 'journal_type': 'purchase', 'search_default_unpaid':1}</field>
+        </record>
+
+        <!-- Binding the list view to supp inovice action -->
+        <record id="action_invoice_tree_supp_oddello" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="oddello_invoice_tree"/>
+            <field name="act_window_id" ref="account.action_invoice_tree2"/>
+        </record>
+	</data>
+</openerp>

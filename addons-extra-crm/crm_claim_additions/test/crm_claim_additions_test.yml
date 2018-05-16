@@ -1,0 +1,54 @@
+    
+- 
+  Creating a stock.production.lot record
+- 
+  !record {model: stock.production.lot, id: stock_production_lot_0}:
+    date: !eval time.strftime('%Y-%m-%d %H:%M:%S')
+    name: '0000001'
+    product_id: product.product_product_cpu1
+    
+- 
+  Creating a crm.claim.problem record
+- 
+  !record {model: crm.claim.problem, id: crm_claim_problem_lensfailure0}:
+    name: Lens Failure
+    prod_categ_id: product.product_category_10
+    
+- 
+  Creating a crm.claim.problem record
+- 
+  !record {model: crm.claim.problem, id: crm_claim_problem_pagefailure0}:
+    name: Page Failure
+    prod_categ_id: product.product_category_7
+    
+- 
+  Creating a crm.claim record
+- 
+  !record {model: crm.claim, id: crm_claim_cameranotworking0}:
+    categ_id: crm_claim.categ_claim3
+    date: !eval time.strftime('%Y-%m-%d %H:%M:%S')
+    email_from: info@axelor.com
+    name: 'Camera Not Working'
+    partner_address_id: base.res_partner_address_3000
+    partner_id: base.res_partner_desertic_hispafuentes
+    partner_phone: +33 1 64 61 04 01
+    product_info_ids:
+      - problem_id: crm_claim_problem_pagefailure0
+        prod_categ_id: product.product_category_10
+        prod_lot_id: stock_production_lot_0
+        product_id: product.product_product_cpu1
+    ref: res.partner,7
+    section_id: crm.section_sales_department
+    
+- 
+  Creating a crm.product.info record
+- 
+  !record {model: crm.product.info, id: crm_product_info_1}:
+    claim_id: crm_claim_cameranotworking0
+    problem_id: crm_claim_problem_lensfailure0
+    prod_categ_id: product.product_category_10
+    prod_lot_id: stock_production_lot_0
+    product_id: product.product_product_cpu1
+    
+    
+   

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="mrp_production_form_view_npg" model="ir.ui.view">
+            <field name="name">mrp_production_form_view_NPG</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position = "after">
+            		<field name='work_order_id'/>
+            		<field name='state'/>
+            		
+            	</xpath>
+            	<xpath expr="//field[@name='product_lines']" position="replace">
+            		<field name='product_lines'>
+            			<tree>
+            				<field name="product_id"/>
+            				<field name="product_qty"/>
+            				<field name="workcenter_id"/>
+            				<field name="source_location_id"/>
+            			</tree>
+            		</field>
+            	</xpath>
+            	
+            	<xpath expr="//field[@name='workcenter_lines']/form/group/field[@name='hour']" position = "after">
+            			<field name="check_prior" readonly="1"/>
+            			<newline/>
+            			<field name="move_ids" readonly="1" colspan="4"/>
+            	</xpath>
+            	<xpath expr="//field[@name='workcenter_lines']/tree/field[@name='hour']" position="before">
+<!--            			<field name="move_ids" readonly="1"/-->
+            			<field name="check_prior" readonly="1"/>
+            			<button name="button_check" icon="gtk-go-forward" states="new" string="Validate"/>
+            			<button name="button_check_dummy" icon="gtk-refresh" states="wait_work,wait_product" string="Check availability"/>
+            	</xpath>
+            	<field name="picking_id" position="replace">
+            	</field>
+            	
+            	<field name="origin" position="before">
+            		<field name="picking_id"/>
+            	</field>
+            	
+            	<xpath expr="//notebook/page[@string='Work Orders']" position="replace"></xpath> 
+            
+            
+ 				<xpath expr= "//form[@string='Manufacturing Orders']/sheet/group" position='after'>
+ 					<notebook>           
+            			<page string="Work Orders" groups="mrp.group_mrp_routings">
+                            <button name="action_compute" states="draft"
+                                string="Compute Data" type="object"
+                                icon="terp-stock_format-scientific"/>
+                            <field name="workcenter_lines">
+                                <form string="Production Work Centers" version="7.0">
+                                	<button name="button_check" states="new" string="Validate"/>
+                                	<button name="button_check_dummy" states="wait_work,wait_product" string="Check availability"/>
+                                    <group col="4">
+                                        <field colspan="4" name="name"/>
+                                        <field name="workcenter_id"/>
+                                        <field name="sequence"/>
+                                        <field name="cycle"/>
+                                        <field name="check_prior"/>
+                                        <field name="hour" widget="float_time"/>
+                                        <field name="production_location_id"/>
+                                        <field name="wo_attatch" filename="datas_fname"/>
+            							<field name="datas_fname" invisible="1"/>
+                                    </group>
+                                        <newline/>
+                                         <group colspan="4">
+                                        <field name="move_ids" string="Consumed Products">
+                                    	   <tree colors="red:scrapped==True;blue:state == 'draft';black:state in('picking_except','confirmed','ready','in_production');gray:state == 'cancel' " string="Consumed Products" editable="bottom">
+	                                           <field name="product_id" readonly="1"/>
+	                                           <field name="product_qty" readonly="1"/>
+	                                           <field name="product_uom" readonly="1" string="Unit of Measure" groups="product.group_uom"/>
+	                                           <field name="prodlot_id" context="{'product_id': product_id}" groups="stock.group_production_lot"/>
+	                                           <field name="state" invisible="1"/>
+	                                           <field name="scrapped" invisible="1"/>
+                                       		</tree>
+                                         </field>
+                                       </group>   
+                                </form>
+                                <tree string="Production Work Centers">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="workcenter_id"/>
+                                    <field name="date_planned"/>
+                                    <field name="cycle"/>
+                                    <field name="check_prior"/>
+                                    <field name="hour" widget="float_time"/>
+									<field name="production_location_id"/>
+									<button name="button_check_dummy" icon="gtk-refresh" states="wait_work,wait_product" string="Check availability"/>
+									<button name="button_check" icon="gtk-go-forward" states="new" string="Validate"/>
+                                </tree>
+                            </field>
+                        </page>
+                       </notebook>  
+				</xpath>  
+            
+       		</field>
+       	</record>	
+            
+  
+ 
+      	<record id="mrp_bom_form_view_NPG_BOM" model="ir.ui.view">
+           <field name="name">mrp_bom_form_view_NPG_BOM</field>
+           <field name="model">mrp.bom</field>
+           <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+           <field name="arch" type="xml">  
+
+	           	<tree string="Components" position="attributes">
+	           		<attribute name="version">7.0</attribute>
+	           		<attribute name="class">npg_bom</attribute>
+	           	</tree>
+	           	<xpath expr="//field[@name='bom_lines']" position="attributes">
+	           		<attribute name="context">{'routing':routing_id}</attribute>
+	           	</xpath>
+	           	<xpath expr="//tree/field[@name='product_id']"
+            		position="replace">
+	           	
+            		<button string="Open Bill of Materials" name="open_component_bom"
+            		type="object" icon="gtk-open"/>
+            		
+            		<button string="Open Product" name="open_product"
+            		type="object" icon="gtk-open"/>
+            		
+            		<field name="sequence" widget='handle'/>
+              		<field name="sequence" string='Line' /> 
+              			
+              		<field name="product_id" context="{'default_supply_method':'produce'}" on_change="onchange_product_id(product_id, name, context)"/>
+              		
+               	</xpath>
+               	<field name="routing_id" position='replace'>
+               		<field name="routing_id" on_change="onchange_routing(routing_id)" class="oe_inline"/>
+               	</field>
+        <!-- Change Product Quantity Label TO  Quantity -->
+        
+            	<field name="product_qty" position='replace'>
+            		<field name="product_qty" string='Quantity' />
+            	</field>
+        <!--  Add new field for Work Center on Product Lines -->    
+            	<field name="date_start" position="before">
+            		<field name="has_bom" />
+            		<field name="source_location_id"/>
+            		<field name="routing_job_id" context="{'from_bom':True,'routing_id':parent.routing_id}"/>
+<!--            		<field name= "workcenter_id" create="false"/-->
+            	</field>
+            </field>
+            	
+        </record>
+            
+        <record id="mrp_bom_list_view_NPG_BOM" model="ir.ui.view">
+            <field name="name">mrp_bom_list_view_NPG_BOM</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+	        <field name="arch" type="xml">
+       		     <field  name="sequence" position="attributes" >
+           		 		<attribute name="invisible">0</attribute>
+           		</field>
+	        
+	        </field>
+	   	</record>
+	<record id="npg_mrp_production_workcenter_form_view_inherit" model="ir.ui.view">
+        <field name="name">verts.mrp.production.workcenter.line.form</field>
+        <field name="model">mrp.production.workcenter.line</field>
+        <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+	   		<xpath expr="//form/header/button[@name='button_start_working']" position="after">
+	   			<button name="button_check" states="new" string="Validate"/>
+	   			<button name="button_check_dummy" states="wait_work,wait_product" string="Check availability"/>
+	   		</xpath>
+	   		<xpath expr="//field[@name='sequence']" position="after">
+	   		 	<field name="wo_attatch" filename="datas_fname"/>
+            	<field name="datas_fname" invisible="1"/>
+            </xpath>							
+   	    </field>
+    </record>
+		 
+	   	
+<!--	   	Routing work center Field-->
+
+		<record id="mrp_routing_workcenter_form_view_npg" model="ir.ui.view">
+           <field name="name">mrp.routing.form_view_npg</field>
+           <field name="model">mrp.routing.workcenter</field>
+           <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+		   <field name="arch" type="xml">
+				<xpath expr="//field[@name='hour_nbr']" position="after">
+            			<field name="check_prior"/>
+            			<field name="production_location_id"/>
+            			<field name="wo_attatch" filename="datas_fname"/>
+            			<field name="datas_fname" invisible="1"/>
+            	</xpath>
+			</field>
+	   	</record>	
+	   	
+	   	<record id="mrp_routing_workcenter_tree_view_npg" model="ir.ui.view">
+           <field name="name">mrp.routing.tree_view_npg</field>
+           <field name="model">mrp.routing.workcenter</field>
+           <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view"/>
+		   <field name="arch" type="xml">
+				<xpath expr="//field[@name='hour_nbr']" position="after">
+            			<field name="check_prior"/>
+            			<field name="production_location_id"/>
+            			<field name="wo_attatch" filename="datas_fname"/>
+            			<field name="datas_fname" invisible="1"/>
+            	</xpath>
+			</field>
+	   	</record>	
+	   	
+	   	<record model="ir.actions.act_window" id="npg_open_routing_lines">
+            <field name="context">{}</field>
+            <field name="name">Routing Operations</field>
+            <field name="res_model">mrp.routing.workcenter</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+	   	
+	   	<record id="mrp_routing_wc_tree_view_npg" model="ir.ui.view">
+           <field name="name">mrp.routing.wc.tree_view_npg</field>
+           <field name="model">mrp.routing</field>
+           <field name="inherit_id" ref="mrp.mrp_routing_form_view"/>
+		   <field name="arch" type="xml">
+		   		<xpath expr="//field[@name='workcenter_lines']" position="replace">
+		   			<field name="workcenter_lines" string="Operation">
+			   			<tree editable="bottom" string="Operation">	
+			   			    <button string="Open Line" icon="gtk-open" name="open_routing_operation" type="object"/>
+		   					<field name="sequence"/>
+		                    <field name="name"/>
+		                    <field name="workcenter_id"/>
+		                    <field name="cycle_nbr"/>
+		                    <field name="hour_nbr"/>
+		                    <field name="check_prior"/>
+		        			<field name="production_location_id"/>
+		        			<field name="wo_attatch" filename="datas_fname"/>
+		        			<field name="datas_fname" invisible="1"/>
+		                    <field name="company_id" widget="selection"  invisible="1" groups="base.group_multi_company"/>
+	   					</tree>
+		            </field>
+	   			</xpath>
+	   		</field>
+        </record>
+        
+        
+     <record id="mrp_operations.workcenter_line_calendar" model="ir.ui.view">
+        <field name="name">mrp.production.workcenter.line.calendar</field>
+        <field name="model">mrp.production.workcenter.line</field>
+        <field name="arch" type="xml">
+            <calendar color="production_id" date_stop="date_planned_end" date_start="date_planned" string="Operations">
+                <field name="workcenter_id"/>
+                <field name="production_id"/>
+            </calendar>
+        </field>
+    </record>
+        
+	   	
+    </data>
+</openerp>
+

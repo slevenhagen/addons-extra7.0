@@ -1,0 +1,5 @@
+===============================================================================
+ Version Change Log (chricar_product_gtin)
+===============================================================================
+2.0 --> 3 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Made the view and the code compatible to v7.

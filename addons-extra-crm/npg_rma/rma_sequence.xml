@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for sale.order -->
+        <record id="seq_type_crm_rma" model="ir.sequence.type">
+            <field name="name">RMA Order</field>
+            <field name="code">crm.rma</field>
+        </record>
+
+        <record id="seq_crm_rma" model="ir.sequence">
+            <field name="name">RMA Sequence</field>
+            <field name="code">crm.rma</field>
+            <field name="prefix">N</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+</openerp>

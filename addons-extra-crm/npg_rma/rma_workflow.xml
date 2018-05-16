@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="wkf_rma" model="workflow">
+			<field name="name">crm.rma.workflow</field>
+			<field name="osv">crm.rma</field>
+			<field name="on_create">True</field>
+		</record>
+
+		<!-- Activity -->
+		<record id="act_draft" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_rma" />
+			<field name="flow_start">True</field>
+			<field name="name">draft</field>
+		</record>
+
+		<record id="act_approve" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_rma" />
+			<field name="name">approve</field>
+			<field name="kind">function</field>
+			<field name="action">action_approve()</field>
+		</record>
+
+		<record id="act_cancel" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_rma" />
+			<field name="name">cancel</field>
+			<field name="kind">function</field>
+			<field name="action">write({'state':'cancel'})</field>
+			<field name="flow_stop">True</field>
+		</record>
+
+
+		<!-- Transistion -->
+
+		<record id="trans_rma_approve" model="workflow.transition">
+			<field name="act_from" ref="act_draft" />
+			<field name="act_to" ref="act_approve" />
+			<field name="signal">rma_approve</field>
+		</record>
+
+		<record id="trans_rma_cancel" model="workflow.transition">
+			<field name="act_from" ref="act_draft" />
+			<field name="act_to" ref="act_cancel" />
+			<field name="signal">rma_cancel</field>
+		</record>
+
+	</data>
+</openerp>

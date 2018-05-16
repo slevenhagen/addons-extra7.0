@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+       
+              
+     		<act_window name="Open Purchase Orders"
+            res_model="purchase.order"
+            src_model="purchase.order.line"
+            view_mode="tree,form"
+            view_type="form"
+            target="current"
+            context="{'search_order_lines':active_ids}"
+            key2="client_action_multi"
+            id="action_view_purchase_line_purchase_order"/>
+            
+
+    </data>
+</openerp>

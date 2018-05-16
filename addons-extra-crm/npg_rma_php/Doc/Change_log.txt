@@ -1,0 +1,16 @@
+===============================================================================
+ Version Change Log (npg_rma_php)
+===============================================================================
+2.0 2014-09-04 by SerpentConsultingServices
+	* Migrated from openerp v6 to openerp v7.
+
+0.05 -> (2012-09-10) By Jay
+	* Corrected the position of Web Data tab of RMA.
+0.04 -> (2012-04-27) By Rima
+	* Removed Invoice No from the crm.rma object - Task 1383
+0.03 -> (2012-04-23) By Rima
+	* Fixed error: duplicate field name same_as_contact
+0.02 -> (2011-11-15) By Janeesh
+	* lot added
+0.01 -> (2011-11-15) By Janeesh
+	* new module to store web details

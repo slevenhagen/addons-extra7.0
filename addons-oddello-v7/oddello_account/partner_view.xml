@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	    <record id="view_partner_form_inherit_oddello" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit.oddello</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.view_partner_property_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='property_account_receivable']" position="after">
+					<field name="ein_id" invisible="not context.get('default_supplier')"/>
+				</xpath>
+			</field>
+		</record>
+		
+	    <record id="view_partner_tree_inherit_oddello" model="ir.ui.view">
+			<field name="name">res.partner.tree.inherit.oddello</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='name']" position="after">
+					<field name="ein_id" invisible="not context.get('default_supplier')"/>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_partner_search_inherit_oddello" model="ir.ui.view">
+			<field name="name">res.partner.search.inherit.oddello</field>
+			<field name="model">res.partner</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='name']" position="after">
+					<field name="ein_id" invisible="not context.get('default_supplier')"/>
+				</xpath>
+			</field>
+		</record>
+
+      </data>
+</openerp>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_crm_rma_form_inherit" model="ir.ui.view">
+		            <field name="name">smrp.repair.form.inherit</field>
+		            <field name="model">crm.rma</field>
+		            <field name="inherit_id"  ref="npg_rma.view_crm_rma_form" />
+		            <field name="arch" type="xml">
+						<xpath expr="//page[@string='Additional Information']" position="before">
+							<page string="Web Data">
+
+								<group colspan="2" col="2">
+								<separator string="Contact Details" colspan="2"/>
+									<field name="contact_company_name"/>
+									<field name="contact_name"/>
+									<field name="contact_address"/>
+									<group colspan="2" col="4">
+									<field name="contact_city"/>
+									<field name="contact_state_id"/>
+									<field name="contact_zip"/>
+									<field name="contact_phone"/>
+									<field name="contact_fax"/>
+									<field name="contact_email"/>
+									</group>
+									<field name="same_as_contact" invisible="1"/>
+								</group>
+
+								<group colspan="2" col="2" attrs="{'readonly':[('same_as_contact', '=', True)]}">
+								<separator string="Shipping Details" colspan="2"/>
+									<field name="shipping_company_name"/>
+									<field name="shipping_name"/>
+									<field name="shipping_address"/>
+									<group colspan="2" col="4">
+									<field name="shipping_city"/>
+									<field name="shipping_state_id"/>
+									<field name="shipping_zip"/>
+									<field name="shipping_phone"/>
+									<field name="shipping_fax"/>
+									<field name="shipping_email"/>
+									</group>
+								</group>
+								<separator string="Additional Comments" colspan="4"/>
+								<field name="comments" colspan="4" nolabel="1"/>
+
+						</page>
+						</xpath>
+		            </field>
+		    	</record>
+
+
+
+				<record id="view_crm_rma_line_form_inherit" model="ir.ui.view">
+		            <field name="name">crm.rma.line.inherit</field>
+		            <field name="model">crm.rma.line</field>
+		            <field name="inherit_id"  ref="npg_rma.view_crm_rma_line_form" />
+		            <field name="arch" type="xml">
+						<xpath expr="//field[@name='repair_id']" position="after">
+							<separator string="Notes" colspan="4"/>
+							<field name="product_note" colspan="4" nolabel="1"/>
+						</xpath>
+		            </field>
+		    	</record>
+
+
+	</data>
+</openerp>

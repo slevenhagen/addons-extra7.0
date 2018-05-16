@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_bom_read_csv_form" model="ir.ui.view">
+            <field name="name">bom.read.csv.form</field>
+            <field name="model">bom.read.csv</field>
+            <field name="arch" type="xml">
+                <form string="BOM Read CSV" version="7.0">
+                    <group col="4">
+                        <field name="browse_path" />
+                    </group>
+                    <footer>
+                        <button name="import_csv" string="Create BOM" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_create_bom" model="ir.actions.act_window">
+            <field name="name">Create BOM</field>
+            <field name="res_model">bom.read.csv</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_create_bom" id="menu_create_bom" parent="mrp.menu_mrp_manufacturing"/>
+
+    </data>
+</openerp>

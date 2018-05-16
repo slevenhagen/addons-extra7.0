@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="res_partner_form_view_add_picking_action" model="ir.ui.view">
+            <field name="name">res.partner.add.picking.action</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <div name="buttons" position="inside">
+                    <button name="%(action_open_picking_list_form_view)d" type="action"
+                        string="Pickings" context="{'default_partner_id': active_id}"/>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</openerp>

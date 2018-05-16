@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Category -->
+
+		<record id="view_mrp_repair_category_form" model="ir.ui.view">
+			<field name="name">mrp.repair.category.form</field>
+			<field name="model">mrp.repair.category</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Repair Category" version="7.0">
+					<group>
+						<field name="name" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_category_tree" model="ir.ui.view">
+			<field name="name">mrp.repair.category.tree</field>
+			<field name="model">mrp.repair.category</field>
+			<field name="arch" type="xml">
+				<tree string="Repair Category">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_category_filter" model="ir.ui.view">
+			<field name="name">mrp.repair.category.search</field>
+			<field name="model">mrp.repair.category</field>
+			<field name="arch" type="xml">
+				<search string="Repair Category">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_mrp_repair_category" model="ir.actions.act_window">
+			<field name="name">Category</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">mrp.repair.category</field>
+			<field name="view_type">form</field>
+			<field name="search_view_id" ref="view_mrp_repair_category_filter" />
+		</record>
+
+		<!-- Component -->
+
+		<record id="view_mrp_repair_component_form" model="ir.ui.view">
+			<field name="name">mrp.repair.component.form</field>
+			<field name="model">mrp.repair.component</field>
+			<field name="arch" type="xml">
+				<form string="Repair Component" version="7.0">
+					<group>
+						<field name="name" />
+						<field name="category_id" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_component_tree" model="ir.ui.view">
+			<field name="name">mrp.repair.component.tree</field>
+			<field name="model">mrp.repair.component</field>
+			<field name="arch" type="xml">
+				<tree string="Repair Component ">
+					<field name="name" />
+					<field name="category_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_component_filter" model="ir.ui.view">
+			<field name="name">mrp.repair.component.search</field>
+			<field name="model">mrp.repair.component</field>
+			<field name="arch" type="xml">
+				<search string="Repair Component">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_mrp_repair_component" model="ir.actions.act_window">
+			<field name="name">Component</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">mrp.repair.component</field>
+			<field name="view_type">form</field>
+			<field name="search_view_id" ref="view_mrp_repair_component_filter" />
+		</record>
+
+		<!-- Symptom -->
+
+		<record id="view_mrp_repair_symptom_form" model="ir.ui.view">
+			<field name="name">mrp.repair.symptom.form</field>
+			<field name="model">mrp.repair.symptom</field>
+			<field name="arch" type="xml">
+				<form string="Repair Symptom" version="7.0">
+					<group>
+						<field name="name" />
+						<field name="compo_id" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_symptom_tree" model="ir.ui.view">
+			<field name="name">mrp.repair.symptom.tree</field>
+			<field name="model">mrp.repair.symptom</field>
+			<field name="arch" type="xml">
+				<tree string="Repair Symptom">
+					<field name="name" />
+					<field name="compo_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_symptom_filter" model="ir.ui.view">
+			<field name="name">mrp.repair.symptom.search</field>
+			<field name="model">mrp.repair.symptom</field>
+			<field name="arch" type="xml">
+				<search string="Repair Symptom">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_mrp_repair_symptom" model="ir.actions.act_window">
+			<field name="name">Symptom</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">mrp.repair.symptom</field>
+			<field name="view_type">form</field>
+			<field name="search_view_id" ref="view_mrp_repair_symptom_filter" />
+		</record>
+
+		<!-- Action Taken -->
+
+		<record id="view_mrp_repair_action_form" model="ir.ui.view">
+			<field name="name">mrp.repair.action.form</field>
+			<field name="model">mrp.repair.action</field>
+			<field name="arch" type="xml">
+				<form string="Repair Action" version="7.0">
+					<group>
+						<field name="name" />
+						<field name="sympt_id" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_action_tree" model="ir.ui.view">
+			<field name="name">mrp.repair.action.tree</field>
+			<field name="model">mrp.repair.action</field>
+			<field name="arch" type="xml">
+				<tree string="Repair Action">
+					<field name="name" />
+					<field name="sympt_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_mrp_repair_action_filter" model="ir.ui.view">
+			<field name="name">mrp.repair.action.search</field>
+			<field name="model">mrp.repair.action</field>
+			<field name="arch" type="xml">
+				<search string="Repair Action">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_mrp_repair_action" model="ir.actions.act_window">
+			<field name="name">Action Taken</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">mrp.repair.action</field>
+			<field name="view_type">form</field>
+			<field name="search_view_id" ref="view_mrp_repair_action_filter" />
+		</record>
+
+		<!-- Menu -->
+
+		<menuitem id="menu_config_repair_order" name="Repair Order"
+			parent="mrp.menu_mrp_configuration" sequence="80" />
+		<menuitem id="menu_mrp_repair_category" action="action_mrp_repair_category"
+			parent="menu_config_repair_order" />
+		<menuitem id="menu_mrp_repair_component" action="action_mrp_repair_component"
+			parent="menu_config_repair_order" />
+		<menuitem id="menu_mrp_repair_symptom" action="action_mrp_repair_symptom"
+			parent="menu_config_repair_order" />
+		<menuitem id="menu_mrp_repair_action" action="action_mrp_repair_action"
+			parent="menu_config_repair_order" />
+
+		<!-- Repair Order Form -->
+
+		<record id="mrp_repair.view_repair_order_form" model="ir.ui.view">
+			<field name="name">mrp.repair.form</field>
+			<field name="model">mrp.repair</field>
+			<field name="arch" type="xml">
+				<form string="Repairs order" version="7.0">
+					<header>
+						<button name="repair_confirm" states="draft" string="Confirm Repair"
+							class="oe_highlight" />
+						<button name="repair_ready" states="confirmed,ready"
+							string="Start Repair" class="oe_highlight" />
+						<button name="action_cancel_draft" states="cancel" string="Set to Draft"
+							type="object" />
+						<button name="action_repair_end" states="under_repair"
+							string="End Repair" class="oe_highlight" />
+						<button name="action_invoice_create" states="2binvoiced"
+							string="Make Invoice" class="oe_highlight" />
+						<button name="invoice_recreate" states="invoice_except"
+							string="Recreate Invoice" />
+						<button name="invoice_corrected" states="invoice_except"
+							string="Invoice Corrected" />
+						<button name="action_cancel" string="Cancel Repair" type="object"
+							attrs="{'invisible':['|',('invoice_method','!=','none'), ('state', 'not in',('confirmed','2binvoiced','ready','under_repair', 'invoice_except'))]}" />
+						<button name="cancel" states="draft" string="Cancel Repair" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" />
+					</header>
+					<sheet string="Repairs order">
+						<h1>
+							RMA
+							<field name="name" class="oe_inline" />
+						</h1>
+						<group>
+							<group>
+								<field name="product_id" on_change="onchange_product_id(product_id)"
+									domain="[('type','!=','service')]" />
+								<field name="partner_id" on_change="onchange_partner_id(partner_id,address_id)"
+									attrs="{'required':[('invoice_method','!=','none')]}" />
+								<field name="address_id" groups="sale.group_delivery_invoice_address" />
+								<field name="move_id" on_change="onchange_move_id(product_id, move_id)"
+									context="{'default_product_id':product_id}" />
+								<field name="location_id" attrs="{'required':[('deliver_bool','=', True)]}"
+									groups="stock.group_locations" />
+								<field name="prodlot_id" on_change="onchange_lot_id(prodlot_id,product_id)"
+									groups="stock.group_production_lot" string="Serial Number" />
+							</group>
+							<group>
+								<field name="guarantee_limit" />
+								<field name="deliver_bool" />
+								<field name="repaired" groups="base.group_no_one" />
+								<field name="invoiced" groups="base.group_no_one" />
+							</group>
+						</group>
+						<notebook colspan="4">
+							<page string="Invoicing">
+								<group col="4">
+									<field name="invoice_method" />
+									<field name="partner_invoice_id"
+										attrs="{'readonly':[('invoice_method','=', 'none')],'required':[('invoice_method','!=','none')]}"
+										groups="sale.group_delivery_invoice_address" />
+									<field name="pricelist_id" groups="product.group_sale_pricelist"
+										context="{'product_id':product_id}" attrs="{'readonly':[('invoice_method','=', 'none')]}" />
+								</group>
+								<!-- <field name="invoice_id"/> -->
+								<field name="fees_lines">
+									<form string="Fees" version="7.0">
+										<label for="name" class="oe_edit_only" />
+										<h2>
+											<field name="name" />
+										</h2>
+										<group string="Product Information">
+											<group>
+												<field name="to_invoice" />
+												<field name="product_id" required="1"
+													on_change="product_id_change(parent.pricelist_id,product_id,product_uom,product_uom_qty, parent.partner_id,parent.guarantee_limit)" />
+												<label for="product_uom_qty" />
+												<div>
+													<field name="product_uom_qty" string="Quantity"
+														class="oe_inline" />
+													<field name="product_uom" groups="product.group_uom"
+														class="oe_inline" />
+												</div>
+											</group>
+											<group>
+												<field name="price_unit" />
+												<field widget="many2many_tags" name="tax_id"
+													domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" />
+												<field name="price_subtotal" />
+											</group>
+										</group>
+										<group string="History">
+											<group>
+												<field name="invoiced" />
+											</group>
+											<group>
+												<field name="invoice_line_id" />
+											</group>
+										</group>
+									</form>
+									<tree string="Fees">
+										<field name="product_id"
+											on_change="product_id_change(parent.pricelist_id,product_id,product_uom,product_uom_qty, parent.partner_id,parent.guarantee_limit)" />
+										<field name='name' />
+										<field name="product_uom_qty" string="Quantity" />
+										<field name="product_uom" string="Unit of Measure"
+											groups="product.group_uom" />
+										<field name="price_unit" />
+										<field name="to_invoice" />
+										<field name="price_subtotal" />
+									</tree>
+								</field>
+							</page>
+							<page string="Operations">
+								<field name="operations">
+									<form string="Operations" version="7.0">
+										<notebook>
+											<page string="Repair Line">
+												<group col="4">
+													<field name="name" />
+													<field name="product_id"
+														on_change="product_id_change(parent.pricelist_id,product_id,product_uom,product_uom_qty, parent.partner_id)" />
+													<label for="product_uom_qty" />
+													<div>
+														<field name="product_uom_qty" class="oe_inline" />
+														<field name="product_uom" class="oe_inline" groups="product.group_uom" />
+													</div>
+													<field name="price_unit" />
+													<field name="price_subtotal" />
+													<field name="type"
+														on_change="onchange_operation_type(type,parent.guarantee_limit,parent.company_id,context)" />
+													<field name="to_invoice" />
+													<field name="tax_id" widget="many2many_tags"
+														domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" />
+													<field name="invoiced" />
+													<field name='prodlot_id' groups="stock.group_production_lot"
+														string="Serial Number" />
+													<field name="location_id" groups="stock.group_locations" />
+													<field name="location_dest_id" groups="stock.group_locations" />
+												</group>
+											</page>
+											<page string="History">
+												<group>
+													<field name="move_id" />
+													<field name="invoice_line_id" />
+												</group>
+											</page>
+										</notebook>
+									</form>
+									<tree string="Operations">
+										<field name="type"
+											on_change="onchange_operation_type(type,parent.guarantee_limit,parent.company_id,context)" />
+										<field name="product_id"
+											on_change="product_id_change(parent.pricelist_id,product_id,product_uom,product_uom_qty, parent.partner_id)" />
+										<field name='name' />
+										<field name="prodlot_id" groups="stock.group_production_lot"
+											string="Serial Number" />
+										<field name="location_id" groups="stock.group_locations" />
+										<field name="location_dest_id" groups="stock.group_locations" />
+										<field name="product_uom_qty" string="Quantity" />
+										<field name="product_uom" string="Unit of Measure"
+											groups="product.group_uom" />
+										<field name="price_unit" />
+										<field name="tax_id" widget="many2many_tags" />
+										<field name="to_invoice" />
+										<field name="categ_id" invisible="1" />
+										<field name="component_id" invisible="1" domain="[('category_id','=',categ_id)]" />
+										<field name="symptom_id" invisible="1" domain="[('compo_id','=',component_id)]" />
+										<field name="action_id" invisible="1" widget="selection" />
+										<field name="price_subtotal" />
+									</tree>
+								</field>
+								<group class="oe_subtotal_footer oe_right">
+									<field name="amount_untaxed" sum="Untaxed amount" />
+									<field name="amount_tax" />
+									<div class="oe_subtotal_footer_separator oe_inline">
+										<label for="amount_total" />
+										<button name="button_dummy" states="draft" string="(update)"
+											type="object" class="oe_edit_only oe_link" />
+									</div>
+									<field name="amount_total" nolabel="1" sum="Total amount"
+										class="oe_subtotal_footer_separator" />
+								</group>
+								<div class="oe_clear" />
+							</page>
+							<page string="Extra Info">
+								<group>
+									<group>
+										<field name="picking_id" />
+										<field name="invoice_id" context="{'form_view_ref': 'account.invoice_form'}" />
+										<field name="company_id" groups="base.group_multi_company"
+											widget="selection" />
+									</group>
+									<group>
+										<field name="location_dest_id" attrs="{'required':[('deliver_bool','=', True)]}"
+											groups="stock.group_locations" />
+									</group>
+								</group>
+							</page>
+							<page string="Notes">
+								<field name="internal_notes" placeholder="Add internal notes..." />
+								<field name="quotation_notes" placeholder="Add quotation notes..." />
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+
+		<!-- Repair Order Line Modifications -->
+
+		<record id="view_repair_order_line_form_inherit" model="ir.ui.view">
+			<field name="name">smrp.repair.line.form.inherit</field>
+			<field name="model">mrp.repair</field>
+			<field name="inherit_id" ref="mrp_repair.view_repair_order_form" />
+			<field name="arch" type="xml">
+				<xpath
+					expr="/form/sheet/notebook/page[@string='Operations']/field[@name='operations']/form/notebook/page/group/field[@name='tax_id']"
+					position="before">
+					<group colspan="4" col="4">
+						<field name="categ_id" />
+						<field name="component_id" domain="[('category_id','=',categ_id)]" />
+						<field name="symptom_id" domain="[('compo_id','=',component_id)]" />
+						<field name="action_id" widget="selection" />
+						<separator string="Symptom Notes" colspan="4" />
+						<field name="symptom_note" colspan="4" nolabel="1" />
+					</group>
+				</xpath>
+				<!-- <xpath expr="/form/sheet/group/field[@name='name']" position="attributes"> 
+					<attribute name="string">RMA</attribute> </xpath> -->
+			</field>
+		</record>
+
+		<record id="view_repair_order_form_inherit" model="ir.ui.view">
+			<field name="name">smrp.repair.form.inherit</field>
+			<field name="model">mrp.repair</field>
+			<field name="inherit_id" ref="mrp_repair.view_repair_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='invoiced']" position="after">
+					<field name="technician_id" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Inherited Repair Order Form -->
+
+		<record id="view_repair_order_form_filter_inherit" model="ir.ui.view">
+			<field name="name">smrp.repair.search.inherit</field>
+			<field name="model">mrp.repair</field>
+			<field name="inherit_id" ref="mrp_repair.view_repair_order_form_filter" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="technician_id" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Received Conditions in Repair Order -->
+
+		<record id="view_repair_order_form_inherit2" model="ir.ui.view">
+			<field name="name">smrp.repair.form.inherit2</field>
+			<field name="model">mrp.repair</field>
+			<field name="inherit_id" ref="mrp_repair.view_repair_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/notebook/page[@string='Invoicing']"
+					position="before">
+					<page string="Received Condition">
+						<group colspan="4" col="4">
+							<field name="courier_type" />
+							<field name="box" />
+							<field name="condition" />
+							<field name="tracking_no" />
+							<separator string="Accessories" colspan="4" />
+							<field name="accessory" colspan="4" nolabel="1" />
+							<separator string="Visible Damage" colspan="4" />
+							<field name="damaged_area" colspan="4" nolabel="1" />
+							<separator string="Component Serials" colspan="4" />
+							<field name="component" colspan="4" nolabel="1" />
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

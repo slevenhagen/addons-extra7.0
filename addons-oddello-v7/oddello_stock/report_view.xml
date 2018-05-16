@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+       <data noupdate="0">
+        <record id="lading_header" model="ir.header_webkit">
+            <field name="footer_html"><![CDATA[]]></field>
+            <field name="orientation">Portrait</field>
+            <field name="format">A4</field>
+            <field name="html"><![CDATA[]]>
+            </field>
+            <field eval="05.0" name="margin_top"/>
+            <field eval="05.0" name="margin_bottom"/>
+            <field name="css"><![CDATA[]]>
+            </field>
+            <field name="name">lading Webkit Header</field>
+        </record>
+    </data>
+    <data>
+
+	<report auto="False"
+        id="report_webkit_bill_lading2"
+        model="stock.picking.out"
+        name="webkit.bill.lading2"
+        file="oddello_stock/reports/report_webkit_lading.mako"
+        string="Bill of Lading"
+        report_type="webkit"
+        header="False"
+        attachment='"BOL"'
+        attachment_use="1"
+        />
+
+    <report auto="False"
+        id="report_webkit_master_bill_lading"
+        model="stock.picking.out"
+        name="webkit.master.bill.lading"
+        file="oddello_stock/reports/report_webkit_master_lading.mako"
+        string="Master Bill of Lading"
+        report_type="webkit"
+        header="False"
+        attachment='"Master BOL"'
+        attachment_use="1"
+        multi="True"
+        />
+
+	<record id='report_webkit_bill_lading2' model='ir.actions.report.xml'>
+			<field name="webkit_header" ref="lading_header" />
+		</record>
+
+	<record id='report_webkit_master_bill_lading' model='ir.actions.report.xml'>
+			<field name="webkit_header" ref="lading_header" />
+		</record>
+
+
+    </data>
+</openerp>
+

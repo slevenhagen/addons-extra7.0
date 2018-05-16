@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <act_window id="action_claim_from_invoice" name="Claim"
+            domain="[]" target="current"
+            context="{'default_partner_id': partner_id, 'default_ref':'account.invoice,' + str(active_id)}"
+            view_mode="form" res_model="crm.claim"
+            src_model="account.invoice" />
+
+    </data>
+</openerp>

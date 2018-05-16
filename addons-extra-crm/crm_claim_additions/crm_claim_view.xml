@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!--  CRM Claim Problem Search View -->
+		<record id="crm_claim_problem_search" model="ir.ui.view">
+            <field name="name">crm.claim.problem.search</field>
+            <field name="model">crm.claim.problem</field>
+            <field name="arch" type="xml">
+                <search string="CRM Claim Problems">
+                    <field name="name" string="Problem"/>
+                    <field name="prod_categ_id" />
+                </search>
+            </field>
+        </record>
+
+        <!--  CRM Claim Problem Tree -->
+		<record id="crm_claim_problem_tree" model="ir.ui.view">
+            <field name="name">crm.claim.problem.tree</field>
+            <field name="model">crm.claim.problem</field>
+            <field name="arch" type="xml">
+                <tree string="CRM Claim Problems">
+                    <field name="name"/>
+                    <field name="prod_categ_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--  CRM Claim Problem Form -->
+		<record id="crm_claim_problem_form" model="ir.ui.view">
+            <field name="name">crm.claim.problem.form</field>
+            <field name="model">crm.claim.problem</field>
+            <field name="arch" type="xml">
+                <form string="CRM Claim Problems">
+                    <field name="name"/>
+                    <field name="prod_categ_id"/>
+                    <separator string="Problem Details" colspan="4"/>
+                    <field name="details" nolabel="1" colspan="4"/>
+                </form>
+            </field>
+        </record>
+
+        <!--  Action for CRM Claim Problems -->
+        <record id="action_crm_claim_problem" model="ir.actions.act_window">
+            <field name="name">CRM Claim Problems</field>
+            <field name="res_model">crm.claim.problem</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--  Menu for CRM Claim Problems -->
+        <menuitem action="action_crm_claim_problem" id="menu_crm_claim_problems" name="Claim Problems" parent="crm_claim.menu_config_claim"/>
+
+   		<!--  CRM Claim Products Info Tree -->
+		<record id="crm_claim_product_info_tree" model="ir.ui.view">
+            <field name="name">crm.product.info.tree</field>
+            <field name="model">crm.product.info</field>
+            <field name="arch" type="xml">
+                <tree string="Claim Product Information">
+                    <field name="prod_lot_id"/>
+                    <field name="product_id"/>
+                    <field name="prod_categ_id"/>
+                    <field name="problem_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--  CRM Claim Products Info Form -->
+		<record id="crm_claim_product_info_form" model="ir.ui.view">
+            <field name="name">crm.product.info.form</field>
+            <field name="model">crm.product.info</field>
+            <field name="arch" type="xml">
+                <form string="Claim Product Information">
+                    <field name="prod_lot_id" on_change="onchange_product_prodlot(prod_lot_id)"/>
+                    <field name="product_id" on_change="onchange_product_prodlot(prod_lot_id,product_id)"/>
+                    <field name="prod_categ_id" on_change="onchange_prod_categ(prod_categ_id,product_id)"/>
+                    <field name="problem_id" domain="[('prod_categ_id','=',prod_categ_id)]"/>
+                </form>
+            </field>
+        </record>
+
+		<!--  CRM Claim Inherit View for Problems -->
+   		<record id="view_crm_claim_problems_form" model="ir.ui.view">
+            <field name="name">crm.claim.problem.form.inherit</field>
+            <field name="model">crm.claim</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//page[@string='Follow Up']" position="after">
+	                <page string="Product Information">
+	   					<field name="product_info_ids" colspan="4" nolabel="1" widget="one2many_list"/>
+	   				</page>
+   				</xpath>
+				<xpath expr="//field[@name='date']" position="after">
+					<field name="claim_number" />
+					<field name="dealer_id" on_change="onchange_dealer_id(dealer_id)"/>
+				</xpath>
+				<xpath expr="//page[@string='Follow Up']" position="attributes">
+					<attribute name="groups">base.group_extended,crm_claim_additions.group_tech_support</attribute>
+				</xpath>
+   			</field>
+   		</record>
+
+   		<!--  CRM Claim List view Inherited -->
+   		<record id="crm_case_claims_tree_view_inherit" model="ir.ui.view">
+			<field name="name">CRM - Claims Tree Inherit</field>
+			<field name="model">crm.claim</field>
+			<field name="inherit_id" ref="crm_claim.crm_case_claims_tree_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="dealer_id" />
+					<field name="claim_number" />
+				</xpath>
+			</field>
+		</record>
+
+		<!--  CRM Claim SEarch view Inherited -->
+   		<record id="crm_case_claims_search_view_inherit" model="ir.ui.view">
+			<field name="name">CRM - Claims Search Inherit</field>
+			<field name="model">crm.claim</field>
+			<field name="inherit_id" ref="crm_claim.view_crm_case_claims_filter" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='user_id']" position="after">
+					<field name="dealer_id" />
+				</xpath>
+			</field>
+		</record>
+
+	<!-- Inherited Partner Address's Form to show dealer ID -->
+	<record id="view_partner_form_nuvico" model="ir.ui.view">
+	    <field name="name">res.partner.form</field>
+	    <field name="model">res.partner</field>
+	    <field name="inherit_id" ref="base.view_partner_form"/>
+	    <field name="arch" type="xml">
+			<xpath expr="//field[@name='email']" position="after">
+				<field name="dealer_id"/>
+			</xpath>
+		</field>
+	</record>
+
+	<!--<record id="view_partner_address_form1_inherit_dealer" model="ir.ui.view">
+    	<field name="name">res.partner.address.form1</field>
+	    <field name="model">res.partner.address</field>
+	    <field name="type">form</field>
+	    <field name="inherit_id" ref="base.view_partner_address_form1"/>
+	    <field name="arch" type="xml">
+		    <xpath expr="/form/group[3]" position="inside" >
+		    	<field name="dealer_id"/>
+		    </xpath>
+		</field>
+	</record>
+
+	 --><record model="ir.ui.menu" id="base.menu_base_config">
+        <field eval="[(4, ref('group_tech_support'))]" name="groups_id"/>
+      </record>
+
+      <record model="ir.ui.menu" id="crm_claim.menu_config_claim">
+        <field eval="[(4, ref('group_tech_support'))]" name="groups_id"/>
+      </record>
+
+      <record model="ir.ui.menu" id="crm_claim.menu_report_crm_claim_tree">
+        <field eval="[(4, ref('group_tech_support'))]" name="groups_id"/>
+      </record>
+
+   </data>
+</openerp>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+  <data>
+    <!--deferred_processing.task form-->
+    <record model='ir.ui.view' id='view_deferred_processing_task_form'>
+      <field name='name'>deferred_processing.task.form</field>
+      <field name='model'>deferred_processing.task</field>
+      <field name='priority'>16</field>
+      <field type='xml' name='arch'>
+        <form string='deferred_processing.task'>
+          <field readonly='1' name='name'/>
+          <field readonly='1' name='state'/>
+          <field widget='float_time' name='time_left'/>
+          <field widget='float_time' name='time_elapsed'/>
+          <field name='speed'/>
+          <field name='total'/>
+          <field name='processed'/>
+          <field readonly='1' name='result'/>
+          <field readonly='1' name='user_id'/>
+          <field colspan='2' widget='progressbar' name='progress'/>
+          <button name='refresh_status' colspan='2' attrs="{'invisible':[('state','=','done')]}" type='object' string='Refresh' icon='gtk-refresh'/>
+        </form>
+      </field>
+    </record>
+    <!--deferred_processing.task tree-->
+    <record model='ir.ui.view' id='view_deferred_processing_task_tree'>
+      <field name='name'>deferred_processing.task.tree</field>
+      <field name='model'>deferred_processing.task</field>
+      <field name='priority'>16</field>
+      <field type='xml' name='arch'>
+        <tree string='deferred_processing.task'>
+          <field name='name'/>
+          <field name='state'/>
+          <field widget='float_time' name='time_left'/>
+          <field widget='float_time' name='time_elapsed'/>
+          <field name='speed'/>
+          <field name='processed'/>
+          <field name='total'/>
+          <button attrs="{'invisible':[('state','=','done')]}" icon='gtk-refresh' type='object' name='refresh_status' string='Refresh'/>
+          <field widget='progressbar' name='progress'/>
+        </tree>
+      </field>
+    </record>
+    <!-- -->
+  </data>
+</openerp>
+

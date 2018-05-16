@@ -1,0 +1,51 @@
+===============================================================================
+ Version Change Log (oddello_sale)
+===============================================================================
+
+2.2 --> 7 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Updated the code as per v7.
+
+2.1 --> 4 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Improved the view and code as per v7.
+
+2.0 --> 1 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Made the view and the code compatible to v7.
+
+1.10 --> 28 Mar 2014 Jay:
+		* Changed the transition destination of trans_ship_ship_except to act_ship_end 
+
+1.09 --> 21 Mar 2014 Bipin:
+         * Added a functionality to change the state as 'Historical'
+         	
+1.08 --> 17 dec 2013 :Bipin
+        * create new model hu_type for BOL report.
+        * changed the handling unit and type of unit value in BOL report
+        
+1.07 --> 10 Dec 2013 : Bipin Rathod
+        * Corrected report layout to accommodate 10 decimals
+        
+1.06 --> 03 dec 2013: Krutarth
+		* Changed analytic account field level to sale order line from sale order.
+
+1.05 --> 13 nov 2013: Vishal
+		* Added fields on SO to be used for BOL report on DO
+		
+1.04 --> 30 oct 2013: Bipin Rathod
+		* sale order line: unit price and subtotal is with 4 decimal
+
+1.03 --> 08 June 2013 : Bipin Rathod
+		* Changed Part Number/ Description label to PN / Description.
+		* Changed Delivery Date/Time label to Needed Date
+		* Moved Specification of Product in one line.
+		* Removed Promise and Needed label.
+		* Changed the label of Amount (Price label) its just Amount now.
+
+1.02  --> 10 may 2013: Bipin Rathod
+		* Added modified Sale Order report
+
+1.01  --> 15 March 2013: Jay Vora
+		* Improved the dependencies by adding sale_order_dates
+
+1.00  --> 12 March 2013: Naitik Mehta
+		* Added new module oddello_sale.
+		

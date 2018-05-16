@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report auto="False" 
+        id="report_account_invoice" 
+        model="account.invoice" 
+        name="account.invoice.oddello" 
+        rml="oddello_account/report/account_invoice_oddello.rml" 
+        string="Invoices"
+        header="False"/>
+        
+    </data>
+</openerp>

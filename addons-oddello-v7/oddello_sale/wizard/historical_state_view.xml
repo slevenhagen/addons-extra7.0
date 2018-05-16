@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="historical_from_view" model="ir.ui.view">
+			<field name="name">historical.form.view</field>
+			<field name="model">historical.state</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Set Historical">
+					<group col="2">
+                    	<field name="historical" string ="Model" select="1"/>
+                    	<field name="keep_active"/>
+                    </group>
+                    <newline/>
+                    <field name="sale_ids" nolabel="1" attrs ="{'invisible':[('historical','!=','sale_order')]}"/>
+                    <field name="purchase_ids" nolabel="1" attrs ="{'invisible':[('historical','!=','purchase_order')]}"/>
+                    <field name="delivery_ids" nolabel="1" attrs ="{'invisible':[('historical','!=','delivery_order')]}"/>
+                    <field name="incoming_ids" nolabel="1" attrs ="{'invisible':[('historical','!=','incoming')]}"/>
+                    <field name="move_ids" nolabel="1" attrs ="{'invisible':[('historical','!=','stock_move')]}"/>
+					<separator colspan="4"/>
+                    <group colspan="2" col="4">
+                        <button special="cancel" string="Cancel"  icon="gtk-cancel"/>
+                        <button string="Historical" name='historical' type='object'/>
+                    </group>
+                </form>
+             </field>
+		</record>
+		<record id="historical_action" model="ir.actions.act_window">
+            <field name="name">Set Historical</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">historical.state</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="historical_from_view"/>
+            <field name="target">new</field>
+        </record>
+		<menuitem
+            action="historical_action" id="historical_action_id"
+            parent="base.menu_sale_config_sales" sequence="10"/>
+	</data>
+</openerp>

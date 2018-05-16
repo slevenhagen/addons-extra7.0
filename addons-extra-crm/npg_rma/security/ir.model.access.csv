@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_crm_rma_manager","RMA Manager","model_crm_rma","base.group_sale_manager",1,1,1,1
+"access_crm_rma_message_manager","RMA message manger","model_crm_rma_message","base.group_sale_manager",1,1,1,1
+"access_crm_rma_user","RMA User","model_crm_rma","base.group_sale_salesman",1,1,1,1
+"access_crm_rma_line_user","RMA Line User","model_crm_rma_line","base.group_sale_salesman",1,1,1,1
+"access_crm_rma_message_user","Rma Message User","model_crm_rma_message","base.group_sale_salesman",1,1,1,1
+"access_crm_rma_line_manager","RMA Line Manager","model_crm_rma_line","base.group_sale_manager",1,1,1,1

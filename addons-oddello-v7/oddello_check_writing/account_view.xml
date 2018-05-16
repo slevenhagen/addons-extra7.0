@@ -1,0 +1,17 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<!-- <openerp> -->
+<!-- 	<data> -->
+<!-- 			<!-- Check Log --> -->
+<!-- 		<record id="check_log_tree_inherit" model="ir.ui.view"> -->
+<!-- 			<field name="name">check.log.tree.inherit</field> -->
+<!-- 			<field name="model">check.log</field> -->
+<!-- 			<field name="type">tree</field> -->
+<!-- 			<field name="inherit_id" ref="account_check_writing.check_log_tree" /> -->
+<!-- 			<field name="arch" type="xml"> -->
+<!-- 				<field name="name" position="after"> -->
+<!-- 					<field name="journal_id" readonly="1"/> -->
+<!-- 				</field> -->
+<!-- 			</field> -->
+<!-- 		</record> -->
+<!-- 	</data> -->
+<!-- </openerp> -->

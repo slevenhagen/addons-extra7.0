@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Inherited Tree view of RMA Messages -->
+		<record id="view_crm_rma_meessage_tree_inherit" model="ir.ui.view">
+			<field name="name">crm.rma.message.tree.inherit</field>
+			<field name="model">crm.rma.message</field>
+			<field name="inherit_id" ref="npg_rma.view_crm_rma_meessage_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='name']" position="replace">
+					<field name="date" />
+					<field name="short_message" />
+					<field name="user_id" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Inherited Form view of RMA Messages -->
+		<record id="view_crm_rma_meessage_form_inherit" model="ir.ui.view">
+			<field name="name">crm.rma.message.form.inherit</field>
+			<field name="model">crm.rma.message</field>
+			<field name="inherit_id" ref="npg_rma.view_crm_rma_meessage_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//separator[@string='Message']" position="replace" />
+				<xpath expr="//field[@name='name']" position="replace">
+					<field name="user_id" />
+					<field name="date" />
+					<separator string="Message" colspan="4" />
+					<field name="name" nolabel="1" colspan="4" />
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+            <record id="view_picking_withcarrier_out_form_for_oddello" model="ir.ui.view">
+            <field name="name">delivery.stock.picking_withcarrier.out.form.view for oddello</field>
+            <field name="type">form</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='number_of_packages']" position='replace'>
+                </xpath>
+                <xpath expr="//field[@name='weight']" position='replace'>
+                </xpath>
+                <xpath expr="//field[@name='weight_net']" position='replace'>
+                </xpath>
+                </field>
+        </record> 
+	</data>
+</openerp>

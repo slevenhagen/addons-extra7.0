@@ -1,0 +1,12 @@
+===============================================================================
+ Version Change Log (sale_invoice_additions)
+===============================================================================
+2.1 --> 7 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Updated the code as per v7.
+
+2.0 --> 2 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Made the view and the code compatible to v7.
+
+1.0  --> 25 July 2013: Bipin Rathod
+		* Added new module oddello_Account.
+

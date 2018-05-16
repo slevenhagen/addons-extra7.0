@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+ 		<record id="npg_comment_codes_tree" model="ir.ui.view">
+			<field name="name">npg.comment.codes.tree</field>
+            <field name="model">npg.comment.codes</field>
+            <field name="arch" type="xml">
+                <tree string="Comment codes">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="desc" />
+                </tree>
+            </field>
+		</record>
+		
+		 <record id="npg_comment_codes_form" model="ir.ui.view">
+            <field name="name">npg.comment.codes.form</field>
+            <field name="model">npg.comment.codes</field>
+            <field name="arch" type="xml">
+                <form string="Comment codes" version="7.0">
+	                <sheet>
+	                    <group col="4">
+		                	<field name="name"/>
+		                	<field name="code"/>
+                       </group>
+                        <field name="desc"/>
+                       
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+		<record id="action_npg_comment_codes" model="ir.actions.act_window">
+            <field name="name">Comment codes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">npg.comment.codes</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="npg_comment_codes_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create Comment codes. 
+              </p><p>
+               Comment codes.
+              </p>
+            </field>
+        </record>
+       
+        <menuitem action="action_npg_comment_codes" string="Comment codes" id="menu_npg_comment_codes" parent="base.menu_base_config" sequence="2"/>
+           	
+       
+        <record id="npg_sale_comment" model="ir.ui.view">
+            <field name="name">Sale Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+	           <field name="pricelist_id" position="after">
+	           	 	<field name="comment_code"/>  	 	
+	           </field>
+	           
+			</field>
+		</record>	
+        	
+		<record id="npg_purchase_comment" model="ir.ui.view">
+            <field name="name">Purchase Order</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+	            <field name="pricelist_id" position="after">
+	           	 	<field name="comment_code"/>
+	           </field>
+			</field>
+		</record>		
+		  
+
+
+    </data>
+</openerp>

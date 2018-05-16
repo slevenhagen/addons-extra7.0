@@ -1,0 +1,6 @@
+.npg_bom  [data-id="sequence"]
+	{width: 16px;}
+.npg_bom [data-id="product_qty"]
+	{width: 30px;}
+.npg_bom [data-id="has_bom"]
+	{width: 16px;}

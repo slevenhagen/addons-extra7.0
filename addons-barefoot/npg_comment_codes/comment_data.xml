@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">    
+    	<record id="npg_comment_codes_1" model="npg.comment.codes">
+            <field name="code">C01</field>
+            <field name="name">FREIGHT PREPAID AND ADD TO INVOICE</field>
+            <field name="desc">FREIGHT PREPAID AND ADD TO INVOICE</field>
+        </record>
+        
+        <record id="npg_comment_codes_2" model="npg.comment.codes">
+            <field name="code">C02</field>
+            <field name="name">FREIGHT PREPAID AND ALLOWED</field>
+            <field name="desc">FREIGHT PREPAID AND ALLOWED</field>
+        </record>
+        
+        <record id="npg_comment_codes_3" model="npg.comment.codes">
+            <field name="code">C03</field>
+            <field name="name">FREIGHT COLLECT</field>
+            <field name="desc">FREIGHT COLLECT</field>
+        </record>
+        
+        <record id="npg_comment_codes_4" model="npg.comment.codes">
+            <field name="code">C04</field>
+            <field name="name">FREIGHT 3RD PARTY BILLING</field>
+            <field name="desc">FREIGHT 3RD PARTY BILLING</field>
+        </record>
+    </data>
+</openerp>

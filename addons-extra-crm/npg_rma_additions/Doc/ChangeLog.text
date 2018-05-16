@@ -1,0 +1,8 @@
+===============================================================================
+ Version Change Log (npg_rma_extension)
+===============================================================================
+2.0 2014-09-04 by SerpentConsultingServices
+	* Migrated from openerp v6 to openerp v7.
+
+1.01	-> (2012-04-30) : Anup
+		* Created the module for adding history in RMA.

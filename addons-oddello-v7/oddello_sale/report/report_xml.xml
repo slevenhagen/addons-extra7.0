@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report auto="False" 
+        id="sale.report_sale_order" 
+        model="sale.order" 
+        name="sale.order.oddello" 
+        rml="oddello_sale/report/sale_order_oddello.rml" 
+        string="Sale Order"
+        header="False"/>
+        
+    </data>
+</openerp>

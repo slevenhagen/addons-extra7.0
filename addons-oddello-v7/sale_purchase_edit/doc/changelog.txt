@@ -1,0 +1,9 @@
+===============================================================================
+ Version Change Log (sale_purchase_edit)
+===============================================================================
+1.0 --> 22 Aug 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Added module having additional functionality of sales and purchase.  
+		* Added a domain on the field Delivery Address on the sales order so that it shows contact addresses for the Customer selected. 
+		* Added fields city and state in the list view of the customers and the contacts.
+		* Removed the restriction of removing undone moves.
+		* Added Reset to draft button on Sale order.

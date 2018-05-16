@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+		<record id="view_stock_picking_search_inherit_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.search.inherit.oddello</field>
+			<field name="model">stock.picking</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="stock.view_picking_internal_search"/>
+			<field name="arch" type="xml">
+			<xpath expr="//field[@name='partner_id']" position="after">
+				<field name="full_name" width="500"/>
+			</xpath>
+			<xpath expr="//filter[@name='done']" position="after">
+				<filter icon="terp-document-new" string="Historical" domain="[('state','=','historical')]" help="Sales Order that haven't yet been confirmed"/>
+			</xpath>
+			</field>
+		</record>
+		
+		<record id="view_stock_in_picking_search_inherit_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.in.search.inherit.oddello</field>
+			<field name="model">stock.picking.in</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="stock.view_picking_in_search"/>
+			<field name="arch" type="xml">
+			<xpath expr="//filter[@name='done']" position="after">
+				<filter icon="terp-document-new" string="Historical" domain="[('state','=','historical')]" help="Sales Order that haven't yet been confirmed"/>
+			</xpath>
+			</field>
+		</record>
+		
+		<record id="view_stock_out_picking_search_inherit_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.out.search.inherit.oddello</field>
+			<field name="model">stock.picking</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="stock.view_picking_out_search"/>
+			<field name="arch" type="xml">
+			<xpath expr="//filter[@name='done']" position="after">
+				<filter icon="terp-document-new" string="Historical" domain="[('state','=','historical')]" help="Sales Order that haven't yet been confirmed"/>
+			</xpath>
+			</field>
+		</record>
+
+		<record id="view_stock_picking_in_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.in.inherted for oddello</field>
+			<field name="model">stock.picking.in</field>
+			<!-- <field name="type">form</field> -->
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+			    <xpath expr="//field[@name='min_date']" position="after">
+					<field name="date_receipt" required='1'/>
+				</xpath>
+
+				<xpath expr="//field[@name='stock_journal_id']" position="after">
+					<field name="attached_truck_driver_signature" attrs="{'readonly':[('state', '=','done')]}"/>
+					<field name="all_product_received" attrs="{'readonly':[('state', '=','done')]}"/>
+					<field name="invoice_id" invisible="1"/>
+				</xpath>
+				<xpath expr="//field[@name='date_done']" position="replace">
+				</xpath>
+				<xpath expr="//field[@name='date']" position="after">
+					<field name="date_done" string="Date of Reception"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="view_stock_picking_form_inherit_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.form.inherit.oddello</field>
+			<field name="model">stock.picking</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_done']" position="attributes">
+					<attribute name="groups"></attribute>
+				</xpath>
+				<xpath expr="//field[@name='date_done']" position="replace">
+				</xpath>
+				<xpath expr="//field[@name='date']" position="after">
+					<field name="date_done"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="view_stock_picking_out_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.out.inherted for oddello</field>
+			<field name="model">stock.picking.out</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='min_date']" position="after">
+					<field name="active" invisible="1"/>
+				</xpath>
+
+				<xpath expr="//field[@name='stock_journal_id']" position="after">
+<!--
+					<field name="attached_truck_driver_signature" attrs="{'readonly':[('state', '=','done')]}"/>
+					<field name="all_product_received" string ='All Delivered Products checked?' attrs="{'readonly':[('state', '=','done')]}"/>
+-->					<field name="invoice_id" invisible="1"/>
+				</xpath>
+			    <xpath expr="//field[@name='company_id']" position="after">
+					<field name="handling_unit"/>
+					<field name="hu_type"/>
+					<field name="nmfc"/>
+					<field name="p_class"/>
+				</xpath>
+				<xpath expr="//field[@name='date_done']" position="replace">
+				</xpath>
+				<xpath expr="//field[@name='date']" position="after">
+					<field name="date_done" string="Date of Delivery"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="stock.action_picking_tree" model="ir.actions.act_window">
+            <field name="context">{'display_bol':True,'contact_display': 'partner_address', 'search_default_available': 1}</field>
+        </record>
+
+		<record id="stock.action_picking_tree4" model="ir.actions.act_window">
+            <field name="context">{'contact_display': 'partner_address'}</field>
+        </record>
+
+		<record id="stock.action_picking_tree6" model="ir.actions.act_window">
+            <field name="context">{'contact_display': 'partner_address'}</field>
+        </record>
+        
+		<record id="view_stock_move_oddello" model="ir.ui.view">
+			<field name="name">stock.move.inherted for oddello</field>
+			<field name="model">stock.move</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_move_form"/>
+			<field name="arch" type="xml">
+			    <xpath expr="//field[@name='picking_id']" position="after">
+			    	<field name="active" invisible="1"/>
+				</xpath>
+			</field>
+		</record>
+
+		<act_window
+		context="{'sale_order_att':True}"
+        id="stock_picking_attachment_link"
+        name="Outgoing BoL"
+        res_model="ir.attachment"
+        src_model="stock.picking.out"/>
+
+		<act_window
+		context="{'mbol_att':True}"
+        id="master_bol_attachment_link"
+        name="Master BoL"
+        res_model="ir.attachment"
+        src_model="stock.picking.out"/>
+
+	</data>
+</openerp>

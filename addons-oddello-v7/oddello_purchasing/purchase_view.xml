@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!--        Purchase Order Form view       	-->
+    
+	    <record id="view_order_form_inherit" model="ir.ui.view">
+			<field name="name">purchase.order.form.inherit</field>
+			<field name="model">purchase.order</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='company_id']" position="after">
+					<field name="promise_date" />
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="incoterm_id" widget="selection" />
+				</xpath>
+				<xpath expr="//field[@name='origin']" position="after">
+					<field name="requester"/>
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name='on_change'>onchange_partner_id(partner_id)</attribute>
+				</xpath>
+				<xpath expr="//button[@name='print_quotation'][last()]" position="attributes">
+					<attribute name='states'></attribute>
+					<attribute name='invisible'>1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='print_quotation']" position="attributes">
+					<attribute name='invisible'>1</attribute>
+				</xpath>
+
+			</field>
+		</record>
+
+        <record id="view_order_tree_inherit" model="ir.ui.view">
+			<field name="name">purchase.order.tree.inherit</field>
+			<field name="model">purchase.order</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="purchase.purchase_order_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='company_id']" position="after">
+					<field name="promise_date" />
+				</xpath>
+				<field name="minimum_planned_date" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+			</field>
+		</record>
+		
+		<record id="purchase_order_line_form_oddello" model="ir.ui.view">
+            <field name="name">purchase.order.line.form.oddello</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="context">pol=True,partner_id=parent.partner_id,quantity=product_qty,pricelist=parent.pricelist_id,uom=product_uom,warehouse=parent.warehouse_id</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_purchase_order_filter_inherit" model="ir.ui.view">
+				<field name="name">purchase.order.list.select.inherit</field>
+				<field name="model">purchase.order</field>
+				<field name="type">form</field>
+				<field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+				<field name="arch" type="xml">
+					<xpath expr="//filter[@name='exception']" position="after">
+						<filter icon="terp-document-new" string="Historical" domain="[('state','=','historical')]" help="Sales Order that haven't yet been confirmed"/>
+					</xpath>
+				</field>
+		</record>
+
+      </data>
+</openerp>

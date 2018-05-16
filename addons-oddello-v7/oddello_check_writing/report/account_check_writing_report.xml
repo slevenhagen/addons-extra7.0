@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <report id="account_check_writing.account_print_check_top"
+            string="Print Check (Top)"
+            model="account.voucher"
+            name="account.print.check.top.oddello"
+            rml="oddello_check_writing/report/check_print_top.rml"
+            multi="True"
+            auto="False"/>          
+	</data>
+     
+</openerp>

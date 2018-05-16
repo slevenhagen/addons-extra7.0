@@ -1,0 +1,7 @@
+===============================================================================
+ Version Change Log (sale_weight)
+===============================================================================
+1.0 --> 2 July 2014 : Serpent Consulting Services Pvt. Ltd.
+		* Migrated from V6 to V7.
+		* Modified the code as V7 standards.
+

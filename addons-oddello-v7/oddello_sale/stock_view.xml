@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_picking_out_form_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.out.form oddello</field>
+			<field name="model">stock.picking.out</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				
+				<xpath expr="//field[@name='date']" position="after">
+					<field name="promise_date"/>
+				</xpath>
+				<field name="min_date"  position="attributes">
+    				<attribute name="invisible">True</attribute>
+   				</field>	
+				<xpath expr="//field[@name='stock_journal_id']" position="after">
+					<field name="truck_load_number"/>
+				</xpath>
+				
+			</field>
+		</record>
+		
+		<record id="view_picking_out_search_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.out.search oddello</field>
+			<field name="model">stock.picking.out</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_out_search" />
+			<field name="arch" type="xml">
+				
+				<xpath expr="//field[@name='name']" position="after">
+					<field name="client_order_ref"/>
+				</xpath>
+				
+			</field>
+		</record>
+		
+		<record id="view_stock_picking_out_tree_oddello" model="ir.ui.view">
+			<field name="name">stock.picking.out.tree oddello</field>
+			<field name="model">stock.picking.out</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_out_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date']" position="after">
+					<field name="promise_date"/>
+				</xpath>
+				<field name="min_date"  position="attributes">
+    				<attribute name="invisible">True</attribute>
+   				</field>
+				
+			</field>
+		</record>
+		
+		<record id="view_picking_form_out_inherit_sale" model="ir.ui.view">
+				<field name="name">stock.picking.form.inherit.2</field>
+				<field name="model">stock.picking.out</field>
+				<field name="type">form</field>
+				<field name="inherit_id" ref="sale_stock.stock_picking_out_inherit_sale" />
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='sale_id']" position="after">
+						<field name="client_order_ref"/>
+					</xpath>
+				</field>
+		</record>
+		
+	</data>
+</openerp>

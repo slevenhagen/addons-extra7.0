@@ -1,0 +1,17 @@
+===============================================================================
+ Version Change Log (crm_claim_additions)
+===============================================================================
+1.01	-> Jan 18,2012 : Serpent Consulting Services
+	* Created the modulefor claim sequence(claim number) and merged the facilities of nuvico_crm_claim into it.
+
+1.02	-> March 30,2012 : Serpent Consulting Services
+	* Added the facility to lookup claims by dealers(added dealer_id to search panel)
+
+1.03	-> October 24,2012 : Serpent Consulting Services
+	* Added onchange of dealerId to populate partner and contact
+
+1.04	-> December 18,2012 : Rima
+	* Modified group visibility on 'Communication & History' tab in Claims
+	
+1.05 on 2014-09-04 by Vishal Modi
+   * Standardized the module as per v7 standards.

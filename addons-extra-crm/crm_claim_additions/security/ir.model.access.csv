@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_claim_report_tech_support,crm.claim.report.tech.support,crm_claim.model_crm_claim_report,group_tech_support,1,1,1,1

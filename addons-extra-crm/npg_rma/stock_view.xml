@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- <record id="view_picking_out_form_warranty" model="ir.ui.view"> <field 
+			name="name">stock.picking.out.form.warranty</field> <field name="model">stock.picking</field> 
+			<field name="inherit_id" ref="stock.view_picking_out_form" /> <field name="arch" 
+			type="xml"> <xpath expr="/form/notebook/page[@string='Products']/field/form/group/field[@name='product_id']" 
+			position="after"> <xpath expr="/form/sheet/group/group/field[@name='product_id']" 
+			position="after"> <field name="warranty" /> </xpath> </field> </record> -->
+
+		<!-- Inherited Stock Move -->
+
+		<record id="stock_move_sale_warranty" model="ir.ui.view">
+			<field name="name">stock.move.form.warranty</field>
+			<field name="model">stock.move</field>
+			<field name="inherit_id" ref="stock.view_move_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='product_id']" position="after">
+					<!-- <group colspan="1" col="2"> -->
+					<!-- <separator string="Warranty" colspan="2" /> -->
+					<field name="warranty" />
+					<field name="move_from_sales" />
+					<!-- </group> -->
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Inherited Stock Warehouse -->
+
+		<record id="view_stock_warehouse_return_location_inherit"
+			model="ir.ui.view">
+			<field name="name">view.stock.warehouse.return.location.inherit
+			</field>
+			<field name="model">stock.warehouse</field>
+			<field name="inherit_id" ref="stock.view_warehouse" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='lot_output_id']" position="after">
+					<field name="lot_return_id" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_stock_warehouse_return_location_inherit_tree"
+			model="ir.ui.view">
+			<field name="name">view.stock.warehouse.return.location.inherit.tree
+			</field>
+			<field name="model">stock.warehouse</field>
+			<field name="inherit_id" ref="stock.view_warehouse_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='lot_output_id']" position="after">
+					<field name="lot_return_id" />
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

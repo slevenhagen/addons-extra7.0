@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+       <record id="stock_picking_form_view_NPG" model="ir.ui.view">
+            <field name="name">stock_picking_form_view_NPG</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+           
+	           <field name='name' position="before">
+	           	<label string='Internal Picking List'/>
+	           </field>
+<!--	            <xpath expr="//notebook/page[@string='Additional Info']"-->
+<!--	             position='after'>-->
+<!--	               	<page string='Product Procurements'>-->
+<!--	               		<field name="related_procurements" />-->
+<!--	               	</page>-->
+<!--	            </xpath>-->
+			</field>
+		</record>
+		
+		<record id="mrp_stock_move_form_view_NPG" model="ir.ui.view">
+            <field name="name">mrp_stock_move_form_view_NPG</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_form"/>
+            <field name="arch" type="xml">
+             
+	             <field name="name" position="before">
+	              <label string="Product Stock Move"/>
+	             </field> 
+					
+
+			</field>
+		</record>
+		
+		<record id="stock_view_move_form_NPG" model="ir.ui.view">
+            <field name="name">stock_view_move_form_NPG</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+
+	             <xpath expr="//group[@string='Traceability']" position="replace">
+	             </xpath>
+				
+
+	             <xpath expr="//group[@name='main_grp']" position="after">
+	              
+				    <group string="Traceability" groups="stock.group_tracking_lot,stock.group_production_lot">
+                         <label for="tracking_id" groups="stock.group_tracking_lot"/>
+                         <div groups="stock.group_tracking_lot">
+                             <field name="tracking_id" class="oe_inline"/>
+                             <button name="310" string="New Pack" type="action" groups="product.group_stock_packaging" icon="terp-accessories-archiver+" states="draft,assigned,confirmed"/>
+                         </div>
+                         <label for="prodlot_id" groups="stock.group_production_lot"/>
+                         <div groups="stock.group_production_lot">
+                             <field name="prodlot_id" context="{'location_id':location_id, 'product_id':product_id}" domain="[('product_id','=?',product_id)]" class="oe_inline" on_change="onchange_lot_id(prodlot_id,product_qty, location_id, product_id, product_uom)"/>
+                             <button name="302" states="draft,waiting,confirmed,assigned" string="Split" type="action" icon="gtk-justify-fill"/>
+                         </div>
+                     </group>
+                  </xpath>
+			</field>
+		</record>
+       
+    </data>
+</openerp>
